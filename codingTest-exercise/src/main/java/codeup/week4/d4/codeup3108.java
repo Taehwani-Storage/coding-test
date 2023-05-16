@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 class Student {
+    public boolean id;
     private String code;
     private int testId;
     private String name;
@@ -88,10 +89,12 @@ public class codeup3108 {
 
     private void printSpecificStudents(int[] arr){
         // 정렬
-        Collections.sort(students,new Comparator<Student>() {
+        students.sort(new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
-                return o1.getTestId() - o2.getTestId();
+                if(o1.getTestId() > o2.getTestId()) return 1;
+                else if (o1.getTestId() == o2.getTestId()) return 0;
+                else return -1;
             }
         });
 
@@ -99,7 +102,6 @@ public class codeup3108 {
         for (int i = 0; i < arr.length; i++) {
             Student student = students.get(arr[i] - 1);
             System.out.println(student.getTestId() + " " + student.getName());
-//            System.out.printf("%s %s %s\n", student.getCode(), student.getTestId(), student.getName());
         }
     }
 
